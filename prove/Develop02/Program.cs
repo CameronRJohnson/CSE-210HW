@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        JournalSelection journalSelection= new JournalSelection();
-        journalSelection.Run();
+        JournalSelection _journalSelection= new JournalSelection();
+        _journalSelection.Run();
     }
 }

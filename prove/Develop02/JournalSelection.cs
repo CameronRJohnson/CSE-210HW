@@ -3,10 +3,10 @@ using System;
 class JournalSelection {
     public void Run() {
         // Declare varibles
-        String selectedOption = "";
-        JournalActions journalActions= new JournalActions();
+        String _selectedOption = "";
+        JournalActions _journalActions= new JournalActions();
 
-        while (selectedOption != "5") {        
+        while (_selectedOption != "5") {        
             // Write options
             Console.Write("Welcome to the Journal Program!\n"
             + "Please select one of the following choices\n"
@@ -19,23 +19,23 @@ class JournalSelection {
             );
 
             // Recieve input
-            selectedOption = Console.ReadLine();
+            _selectedOption = Console.ReadLine();
             Console.WriteLine("\n");
 
             // Determine action
-            switch (selectedOption)
+            switch (_selectedOption)
             {
                 case "1":
-                    journalActions.Write();
+                    _journalActions.Write();
                     break;
                 case "2":
-                    journalActions.Display();
+                    _journalActions.Display();
                     break;
                 case "3":
-                    journalActions.Load();
+                    _journalActions.Load();
                     break;
                 case "4":
-                    journalActions.Save();
+                    _journalActions.Save();
                     break;
                 case "5":
                     Quit();
