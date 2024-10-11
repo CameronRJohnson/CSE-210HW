@@ -27,10 +27,11 @@ class JournalActions {
 
         // Ask the question
         Console.WriteLine($"{_randomQuestion}");
-
+        String _readEntry = Console.ReadLine();
+        Entry _entry = new Entry(_dateText, _randomQuestion, _readEntry);
+        
         // Add the question to the file
-        String _entry = Console.ReadLine();
-        String _entryWithDateAndQuestion = $"\nDate: {_dateText}\nQuestion: {_randomQuestion}\nEntry: {_entry}\n";
+        String _entryWithDateAndQuestion = $"\nDate: {_entry._date}\nQuestion: {_entry._question}\nEntry: {_entry._text}\n";
         _journalEntrys.Add(_entryWithDateAndQuestion);
         
         Console.WriteLine("\nEntry Added!\n");
