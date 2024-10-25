@@ -2,12 +2,12 @@ using System;
 
 public class Word
 {
-    public string word;
-    public bool isShown;
+    public string _word;
+    public bool _isShown;
 
     public Word(string word)
     {
-        this.word = word;
-        this.isShown = true;
+        this._word = word;
+        this._isShown = true;
     }
 }

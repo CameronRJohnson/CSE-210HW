@@ -1,6 +1,5 @@
 using System;
 
-
 public class Reference
 {
     private Scripture scripture;

@@ -5,49 +5,72 @@ class Program
 {
     static void Main(string[] args)
     {
+        // Declare varibles
         Scripture scripture = new Scripture();
         Reference reference = new Reference(scripture);
 
-        // Adds scriptures to the dictionary and splits words
+        // Adds scriptures
         reference.AddScripture("Genesis 1:1", "In the beginning God created the heavens and the earth.");
         reference.AddScripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.");
         reference.AddScripture("Psalm 23:1", "The Lord is my shepherd; I shall not want.");
 
         // List of references
-        List<string> scriptureList = new List<string>
+        List<string> _scriptureList = new List<string>
         {
             "Genesis 1:1",
             "John 3:16",
             "Psalm 23:1"
         };
 
-        // Ask the user for what scripture they want
+        // Ask the user what scripture they want
         Console.WriteLine("Choose a scripture to look up by entering its number:");
-        for (int i = 0; i < scriptureList.Count; i++)
+        for (int i = 0; i < _scriptureList.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {scriptureList[i]}");
+            Console.WriteLine($"{i + 1}. {_scriptureList[i]}");
         }
 
-        int choice = GetValidUserInput(scriptureList.Count);
+        // Recieve the input
+        int _choice = GetUserInput(_scriptureList.Count);
+        Console.Clear();
 
-        string chosenScripture = scriptureList[choice - 1];
-        string scriptureText = reference.LookupScripture(chosenScripture);
-        Console.WriteLine($"\n{chosenScripture}: {scriptureText}\n");
+        string _chosenScripture = _scriptureList[_choice - 1];
+        string _scriptureText = reference.LookupScripture(_chosenScripture);
+        Console.WriteLine($"{_chosenScripture}: {_scriptureText}\n");
 
+        // Clears input
+        string _userInput = string.Empty;
 
-        Console.WriteLine("\nPress Enter to hide 3 words, or any other key to exit.");
+        Console.WriteLine("Press enter to continue, or type 'quit' to finish.");
 
-        while (Console.ReadKey().Key == ConsoleKey.Enter)
+        // Writes the updated scripture
+        while (_userInput.ToLower() != "quit")
         {
+            // Lets user press enter
+            _userInput = Console.ReadLine();
+
+            // Clears the console
             Console.Clear();
-            scripture.HideThreeWords(chosenScripture);
-            scripture.WriteScripture(chosenScripture);
-            Console.WriteLine("Press Enter to hide more words, or any other key to exit.");
+
+            // Hides the words
+            scripture.HideWords(_chosenScripture);
+
+            // Writes the new scripture
+            scripture.WriteScripture(_chosenScripture);
+
+            // Checks to make sure that there are still words
+            if (scripture.AllWordsHidden(_chosenScripture))
+            {
+                Console.WriteLine("\nPress enter to continue, or type 'quit' to finish.");
+                Console.ReadLine();
+                break;
+            }
+
+            Console.WriteLine("\nPress enter to continue, or type 'quit' to finish.");
         }
     }
 
-
-    static int GetValidUserInput(int max)
+    // Makes sure that the users input is valid
+    static int GetUserInput(int max)
     {
         int input;
         while (true)
@@ -56,7 +79,7 @@ class Program
             {
                 return input;
             }
-            Console.WriteLine("Invalid choice. Please enter a valid number.");
+            Console.WriteLine("Please enter a valid number.");
         }
     }
 }
