@@ -15,8 +15,9 @@ class ListingActivity : Activity
         : base(activityName, activityDuration, descriptionMessage)
     {}
 
-    public void AskQuestion()
+    private void AskQuestion()
     {
+        Console.Write(">");
         Console.ReadLine();
     }
 

@@ -7,13 +7,13 @@ class BreathingActivity : Activity
         : base(activityName, activityDuration, descriptionMessage)
     {}
     
-    public void BreathIn(int seconds)
+    private void BreathIn(int seconds)
     {
         Console.Write("Breath In... ");
         CountDown(seconds);
     }
 
-    public void BreathOut(int seconds)
+    private void BreathOut(int seconds)
     {
         Console.Write("Breath Out... ");
         CountDown(seconds);
