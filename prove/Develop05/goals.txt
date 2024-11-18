@@ -1,0 +1,4 @@
+40
+SimpleGoal:simple goal|desction|10|True
+EternalGoal:dsfsaf|dfsfdsa|20
+ChecklistGoal:fdafdas|dasfdsaf|10|100|3|1

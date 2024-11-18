@@ -9,7 +9,7 @@ class Program
 
     public static void Run() {
         // Declare varibles
-        String _selectedOption = "";
+        string _selectedOption = "";
 
         // Write options
         Console.Clear();
