@@ -17,11 +17,9 @@ public class BasicAlarm : Alarm
 
     public override void PlayAlarm()
     {
-        PlayAlarmSound();
     }
 
     public void TestAlarm()
     {
-        PlayAlarmSound();
     }
 }
