@@ -197,58 +197,5 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
-        {
-            "name": "Foundation 1 (YouTube)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build-final-Foundation1",
-            "program": "${workspaceFolder}/final/Foundation1/bin/Debug/net8.0/Foundation1.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/final/Foundation1",
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "stopAtEntry": false
-        },
-
-        {
-            "name": "Foundation 2 (Products)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build-final-Foundation2",
-            "program": "${workspaceFolder}/final/Foundation2/bin/Debug/net8.0/Foundation2.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/final/Foundation2",
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "stopAtEntry": false
-        },
-
-        {
-            "name": "Foundation 3 (Events)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build-final-Foundation3",
-            "program": "${workspaceFolder}/final/Foundation3/bin/Debug/net8.0/Foundation3.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/final/Foundation3",
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "stopAtEntry": false
-        },
-
-        {
-            "name": "Foundation 4 (Exercise)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build-final-Foundation4",
-            "program": "${workspaceFolder}/final/Foundation4/bin/Debug/net8.0/Foundation4.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/final/Foundation4",
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "stopAtEntry": false
-        },
-
     ]
 }
