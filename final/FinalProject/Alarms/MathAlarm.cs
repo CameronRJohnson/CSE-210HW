@@ -13,16 +13,19 @@ public class MathAlarm : Alarm
     {
         Console.Clear();
 
+        // Grab the random numbers
         Random random = new Random();
         int num1 = random.Next(1, 4);
         int num2 = random.Next(1, 5);
         int correctAnswer = num1 + num2;
 
+        // Print the question
         Console.WriteLine($"Solve this math problem to deactivate the alarm: {num1} + {num2} = ?");
 
         Process audioProcess = null;
         bool isCorrect = false;
 
+        // While the answer is not correct it will loop the audio
         while (!isCorrect)
         {
             if (audioProcess == null || audioProcess.HasExited)

@@ -4,7 +4,9 @@ using NAudio.Wave;
 
 public abstract class Alarm
 {
+    // Varible to keep track of when it was set
     protected TimeSpan _time;
+    // This is used to play the audio file on mac
     private ProcessStartInfo _psi = new ProcessStartInfo
     {
         FileName = "afplay",
@@ -28,12 +30,14 @@ public abstract class Alarm
         return _time;
     }
 
+    // This will return the alarm data for when the user wants to list all the alarms
     public string GetAlarmData()
     {
         DateTime displayTime = DateTime.Today.Add(_time);
         return $"Timed Alarm is set for {displayTime:hh\\:mm tt}.";
     }
 
+    // Lets the user create a new alarm
     public void SetNewAlarm()
     {
         while (true)
