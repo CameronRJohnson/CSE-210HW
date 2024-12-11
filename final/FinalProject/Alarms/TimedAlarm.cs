@@ -1,26 +1,43 @@
 using System;
+using System.Diagnostics;
+using System.Threading;
 
 public class TimedAlarm : Alarm
 {
     public TimedAlarm(TimeSpan time) : base(time)
     {
-        _time = time; // Correctly assign the constructor argument to the instance field.
-    }
-
-    public override string GetAlarmData()
-    {
-        // Convert _time to a DateTime for formatting purposes.
-        DateTime displayTime = DateTime.Today.Add(_time);
-        return $"Timed Alarm is set for {displayTime:hh\\:mm tt}.";
+        _time = time;
     }
 
 
     public override void PlayAlarm()
     {
-    }
+        Console.Clear();
 
-    public void TestAlarm()
-    {
-        PlayAlarm();
+        Console.WriteLine("Press any key to deactivate the alarm.");
+
+        while (true)
+        {
+            Process audioProcess = Process.Start(GetPSI());
+
+            while (!Console.KeyAvailable)
+            {
+                if (audioProcess.HasExited)
+                {
+                    Thread.Sleep(60000);
+                    audioProcess = Process.Start(GetPSI());
+                }
+                Thread.Sleep(100);
+            }
+
+            Console.ReadKey(true);
+            if (!audioProcess.HasExited)
+            {
+                audioProcess.Kill();
+            }
+
+            Console.WriteLine("\nAlarm deactivated.");
+            break;
+        }
     }
 }

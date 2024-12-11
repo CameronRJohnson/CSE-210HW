@@ -1,26 +1,39 @@
 using System;
+using System.Diagnostics;
 
 public class RepeatingAlarm : Alarm
 {
     public RepeatingAlarm(TimeSpan time) : base(time)
     {
-        _time = time; // Correctly assign the constructor argument to the instance field.
+        _time = time;
     }
-
-    public override string GetAlarmData()
-    {
-        // Convert _time to a DateTime for formatting purposes.
-        DateTime displayTime = DateTime.Today.Add(_time);
-        return $"Repeating Alarm is set for {displayTime:hh\\:mm tt}.";
-    }
-
 
     public override void PlayAlarm()
     {
-    }
+        Console.Clear();
 
-    public void TestAlarm()
-    {
-        PlayAlarm();
+        Process audioProcess = null;
+        Console.WriteLine("Press any key to deactivate the alarm.");
+
+        while (true)
+        {
+            if (audioProcess == null || audioProcess.HasExited)
+            {
+                audioProcess = Process.Start(GetPSI());
+            }
+
+
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                if (audioProcess != null && !audioProcess.HasExited)
+                {
+                    audioProcess.Kill();
+                }
+                Console.WriteLine("\nAlarm deactivated.");
+                break;
+            }
+        }
     }
 }

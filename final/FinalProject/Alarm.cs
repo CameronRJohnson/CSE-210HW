@@ -1,13 +1,26 @@
 using System;
+using System.Diagnostics;
 using NAudio.Wave;
 
 public abstract class Alarm
 {
-    protected TimeSpan _time; // Change to TimeSpan for better time handling.
+    protected TimeSpan _time;
+    private ProcessStartInfo _psi = new ProcessStartInfo
+    {
+        FileName = "afplay",
+        Arguments =  "/Users/cameronjohnson/Documents/CSE-210HW/final/FinalProject/loud.mp3",
+        RedirectStandardOutput = false,
+        UseShellExecute = false,
+        CreateNoWindow = true
+    };
 
     public Alarm(TimeSpan time)
     {
         _time = time;  
+    }
+
+    protected ProcessStartInfo GetPSI() {
+        return _psi;
     }
 
     public TimeSpan GetTime()
@@ -15,73 +28,46 @@ public abstract class Alarm
         return _time;
     }
 
-    abstract public string GetAlarmData();
+    public string GetAlarmData()
+    {
+        DateTime displayTime = DateTime.Today.Add(_time);
+        return $"Timed Alarm is set for {displayTime:hh\\:mm tt}.";
+    }
 
     public void SetNewAlarm()
     {
-        Console.Write("Enter the time for the alarm (HH:mm): ");
-        string input = Console.ReadLine();
-
-        if (DateTime.TryParseExact(input, "HH:mm", null, System.Globalization.DateTimeStyles.None, out DateTime parsedTime))
+        while (true)
         {
-            _time = parsedTime.TimeOfDay;
+            Console.Write("Enter the time for the alarm (HH:mm or HHMM): ");
+            string input = Console.ReadLine();
 
-            DateTime displayTime = DateTime.Today.Add(_time);
-            Console.WriteLine($"Alarm successfully set for {displayTime:hh\\:mm tt}.");
-        }
-        else
-        {
-            Console.WriteLine("Invalid time format. Please use HH:mm (e.g., 08:30).");
+            if (input.Length == 4 && int.TryParse(input, out int _))
+            {
+                input = input.Insert(2, ":");
+            }
+
+            if (DateTime.TryParseExact(input, "HH:mm", null, System.Globalization.DateTimeStyles.None, out DateTime parsedTime))
+            {
+                if (parsedTime.Hour < 24 && parsedTime.Minute < 60)
+                {
+                    _time = parsedTime.TimeOfDay;
+
+                    DateTime displayTime = DateTime.Today.Add(_time);
+                    Console.WriteLine($"\nAlarm successfully set for {displayTime:hh\\:mm tt}.");
+                    Console.Read();
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("\nInvalid time. Please enter a time between 00:00 and 23:59.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nInvalid time format. Please use HH:mm or HHMM (e.g., 08:30 or 0830).");
+            }
         }
     }
 
     abstract public void PlayAlarm();
-
-
-
-    // For testing purposes 
-    
-    // public void PlayAlarmSound()
-    // {
-    //     try
-    //     {
-    //         using (var audioFile = new AudioFileReader("australia-eas-alarm-267664.mp3"))
-    //         using (var outputDevice = new WaveOutEvent())
-    //         {
-    //             outputDevice.Init(audioFile);
-    //             outputDevice.Play();
-
-    //             // Wait for the sound to finish playing without blocking the thread completely.
-    //             while (outputDevice.PlaybackState == PlaybackState.Playing)
-    //             {
-    //                 System.Threading.Thread.Sleep(100);
-    //             }
-    //         }
-    //         Console.WriteLine("Alarm sound has played.");
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         Console.WriteLine($"An error occurred while playing the alarm sound: {ex.Message}");
-    //     }
-    // }
-
-
-
-
-
-
-    public void AskUserForSetTime()
-    {
-        // Placeholder for any functionality you want to implement.
-    }
-
-    public void DisplayEndMessage()
-    {
-        // Placeholder for end message logic.
-    }
-
-    public void SelfActive()
-    {
-        // Placeholder for self-activation logic.
-    }
 }

@@ -1,27 +1,27 @@
-using System;
+using System.Diagnostics;
 
 public class MusicAlarm : Alarm
 {
     public MusicAlarm(TimeSpan time) : base(time)
     {
-        _time = time; // Correctly assign the constructor argument to the instance field.
-    }
-
-    public override string GetAlarmData()
-    {
-        // Convert _time to a DateTime for formatting purposes.
-        DateTime displayTime = DateTime.Today.Add(_time);
-        return $"Music Alarm is set for {displayTime:hh\\:mm tt}.";
+        _time = time;
     }
 
 
-    public override void PlayAlarm()
-    {
 
-    }
+   public override void PlayAlarm()
+    {   
+        string soundFilePath = "/Users/cameronjohnson/Documents/CSE-210HW/final/FinalProject/calm.mp3";
 
-    public void TestAlarm()
-    {
-        PlayAlarm();
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "afplay",
+                Arguments = soundFilePath,
+                RedirectStandardOutput = false,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            Process.Start(psi);
     }
 }

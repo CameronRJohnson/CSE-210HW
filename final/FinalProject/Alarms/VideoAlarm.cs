@@ -1,27 +1,33 @@
 using System;
+using System.Diagnostics;
 
 public class VideoAlarm : Alarm
 {
     public VideoAlarm(TimeSpan time) : base(time)
     {
-        _time = time; // Correctly assign the constructor argument to the instance field.
+        _time = time;
     }
-
-    public override string GetAlarmData()
-    {
-        // Convert _time to a DateTime for formatting purposes.
-        DateTime displayTime = DateTime.Today.Add(_time);
-        return $"Video Alarm is set for {displayTime:hh\\:mm tt}.";
-    }
-
 
     public override void PlayAlarm()
     {
+        Console.Clear();
 
-    }
+        string youtubeUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
-    public void TestAlarm()
-    {
-        PlayAlarm();
+        Console.WriteLine("Playing YouTube video alarm...");
+        Console.WriteLine($"Opening: {youtubeUrl}");
+
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = youtubeUrl,
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to open YouTube video: {ex.Message}");
+        }
     }
 }
