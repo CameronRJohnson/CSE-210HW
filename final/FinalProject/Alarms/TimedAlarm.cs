@@ -18,14 +18,14 @@ public class TimedAlarm : Alarm
 
         while (true)
         {
-            Process audioProcess = Process.Start(GetPSI());
+            Process audioProcess = Process.Start(GetPSI("loud"));
 
             while (!Console.KeyAvailable)
             {
                 if (audioProcess.HasExited)
                 {
                     Thread.Sleep(60000);
-                    audioProcess = Process.Start(GetPSI());
+                    audioProcess = Process.Start(GetPSI("loud"));
                 }
                 Thread.Sleep(100);
             }

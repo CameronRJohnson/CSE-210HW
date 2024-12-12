@@ -1,27 +1,26 @@
 using System;
 using System.Diagnostics;
-using NAudio.Wave;
 
 public abstract class Alarm
 {
     // Varible to keep track of when it was set
     protected TimeSpan _time;
-    // This is used to play the audio file on mac
-    private ProcessStartInfo _psi = new ProcessStartInfo
-    {
-        FileName = "afplay",
-        Arguments =  "/Users/cameronjohnson/Documents/CSE-210HW/final/FinalProject/loud.mp3",
-        RedirectStandardOutput = false,
-        UseShellExecute = false,
-        CreateNoWindow = true
-    };
 
     public Alarm(TimeSpan time)
     {
         _time = time;  
     }
 
-    protected ProcessStartInfo GetPSI() {
+    protected ProcessStartInfo GetPSI(string fileName) {
+    
+        ProcessStartInfo _psi = new ProcessStartInfo
+        {
+            FileName = "afplay",
+            Arguments = $"{AppDomain.CurrentDomain.BaseDirectory}Audio/{fileName}.mp3",
+            RedirectStandardOutput = false,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
         return _psi;
     }
 
@@ -40,6 +39,8 @@ public abstract class Alarm
     // Lets the user create a new alarm
     public void SetNewAlarm()
     {
+        Console.WriteLine($"{AppDomain.CurrentDomain.BaseDirectory}Audio/loud.mp3");
+
         while (true)
         {
             Console.Write("Enter the time for the alarm (HH:mm or HHMM): ");

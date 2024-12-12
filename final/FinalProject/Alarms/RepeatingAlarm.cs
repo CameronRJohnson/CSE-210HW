@@ -19,7 +19,7 @@ public class RepeatingAlarm : Alarm
         {
             if (audioProcess == null || audioProcess.HasExited)
             {
-                audioProcess = Process.Start(GetPSI());
+                audioProcess = Process.Start(GetPSI("loud"));
             }
 
 

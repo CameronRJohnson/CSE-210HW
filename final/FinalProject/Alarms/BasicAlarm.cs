@@ -10,6 +10,6 @@ public class BasicAlarm : Alarm
 
    public override void PlayAlarm()
     {   
-        Process.Start(GetPSI());
+        Process.Start(GetPSI("loud"));
     }
 }

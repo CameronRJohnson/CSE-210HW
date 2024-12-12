@@ -7,4 +7,5 @@ After creating your alarm please turn on the alarm clock.
 Once turned on your alarm clock will be played once the time is hit and then be removed from the list of active alarm clocks.
 
 Note: You need to set the alarm in military time.
-Note: This has only been tested on Mac.
+
+Note: If wanting to use on Linux please switch afplay to cvlc.

@@ -30,7 +30,7 @@ public class MathAlarm : Alarm
         {
             if (audioProcess == null || audioProcess.HasExited)
             {
-                audioProcess = Process.Start(GetPSI());
+                audioProcess = Process.Start(GetPSI("loud"));
             }
 
             if (Console.KeyAvailable)
