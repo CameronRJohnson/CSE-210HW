@@ -11,18 +11,21 @@ public abstract class Alarm
         _time = time;  
     }
 
-    protected ProcessStartInfo GetPSI(string fileName) {
-    
+    protected ProcessStartInfo GetPSI(string fileName)
+    {
+
         ProcessStartInfo _psi = new ProcessStartInfo
         {
-            FileName = "afplay",
-            Arguments = $"{AppDomain.CurrentDomain.BaseDirectory}Audio/{fileName}.mp3",
+            FileName = "cvlc",
+            Arguments = fileName,
             RedirectStandardOutput = false,
             UseShellExecute = false,
             CreateNoWindow = true
         };
+
         return _psi;
     }
+
 
     public TimeSpan GetTime()
     {
