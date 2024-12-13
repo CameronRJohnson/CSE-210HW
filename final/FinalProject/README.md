@@ -4,8 +4,8 @@ To use this program you will need to first make an alarm setting it with a HH/MM
 
 After creating your alarm please turn on the alarm clock.
 
-Once turned on your alarm clock will be played once the time is hit and then be removed from the list of active alarm clocks.
+Once you have turned on your alarm clock the alarm will be played as soon as the time is hit and then be removed from the list of active alarm clocks.
 
 Note: You need to set the alarm in military time.
 
-Note: If wanting to use on Linux please switch afplay to cvlc.
+Note: If wanting to use on Mac please switch cvlc to afplay.
