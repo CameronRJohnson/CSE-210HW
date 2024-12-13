@@ -42,8 +42,6 @@ public abstract class Alarm
     // Lets the user create a new alarm
     public void SetNewAlarm()
     {
-        Console.WriteLine($"{AppDomain.CurrentDomain.BaseDirectory}Audio/loud.mp3");
-
         while (true)
         {
             Console.Write("Enter the time for the alarm (HH:mm or HHMM): ");
